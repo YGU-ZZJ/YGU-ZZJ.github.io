@@ -1,123 +1,362 @@
+**23计科专本 2023019190 郑志杰**
+
+## 基本概念
+一个 Java 程序可以认为是一系列对象的集合，而这些对象通过调用彼此的方法来协同工作。下面简要介绍下类、对象、方法和实例变量的概念。
+- 对象：对象是类的一个实例，有状态和行为。
+- 类：类是一个模板，它描述一类对象的行为和状态。
+- 方法：方法就是行为，一个类可以有很多方法。逻辑运算、数据修改以及所有动作都是在方法中完成的。
+- 实例变量：每个对象都有独特的实例变量，对象的状态由这些实例变量的值决定。
+
 ---
-layout: default
+
+### 基本语法
+- 大小写敏感：Java 是大小写敏感的，这就意味着标识符 Hello 与 hello 是不同的。
+- 类名：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写，例如 MyFirstJavaClass 。
+- 方法名：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字母大写。
+- 源文件名：源文件名必须和类名相同。当保存文件的时候，你应该使用类名作为文件名保存（切记 Java 是大小写敏感的），文件名的后缀为 .java。（如果文件名和类名不相同则会导致编译错误）。
+- 主方法入口：所有的 Java 程序由 `public static void main(String[] args)`方法开始执行。
+
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+## 标识符
+Java 所有的组成部分都需要名字。类名、变量名以及方法名都被称为标识符。
+- 所有的标识符都应该以字母（A-Z 或者 a-z）,美元符（$）、或者下划线（_）开始
+- 首字符之后可以是字母（A-Z 或者 a-z）,美元符（$）、下划线（_）或数字的任何字符组合
+- 关键字不能用作标识符
+- 标识符是大小写敏感的
+- 合法标识符举例：age、$salary、_value、__1_value
+- 非法标识符举例：123abc、-salary
 
-[Link to another page](./another-page.html).
+---
 
-There should be whitespace between paragraphs.
+## 运算符号
+计算机的最基本用途之一就是执行数学运算，作为一门计算机语言，Java也提供了一套丰富的运算符来操纵变量。我们可以把运算符分成以下几组：
+- 算术运算符
+- 关系运算符
+- 位运算符
+- 逻辑运算符
+- 赋值运算符
+- 其他运算符
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+### 算术运算符
+算术运算符用在数学表达式中，它们的作用和在数学中的作用一样。下表列出了所有的算术运算符。
 
-# Header 1
+*表格中的实例假设整数变量A的值为10，变量B的值为20*
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+| 操作符 | 描述                            | 例子             |
+| ------ | --------------------------------- | ------------------ |
+| +      | 加法 - 相加运算符两侧的值 | A + B 等于 30    |
+| -      | 减法 - 左操作数减去右操作数 | A – B 等于 -10 |
+| *      | 乘法 - 相乘操作符两侧的值 | A * B 等于 200   |
+| /      | 除法 - 左操作数除以右操作数 | B / A 等于 2     |
+| ％    | 取余 - 左操作数除以右操作数的余数 | B % A 等于 0     |
+| ++     | 自增: 操作数的值增加1    | B++ 或 ++B 等于 21 |
+| --     | 自减: 操作数的值减少1    | B-- 或 --B 等于 19 |
 
-## Header 2
+下面的简单示例程序演示了算术运算符。
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+    public class Test {
+      public static void main(String[] args) {
+         int a = 10;
+         int b = 20;
+         int c = 25;
+         int d = 25;
+         System.out.println("a + b = " + (a + b) );
+         System.out.println("a - b = " + (a - b) );
+         System.out.println("a * b = " + (a * b) );
+         System.out.println("b / a = " + (b / a) );
+         System.out.println("b % a = " + (b % a) );
+         System.out.println("c % a = " + (c % a) );
+         System.out.println("a++   = " +  (a++) );
+         System.out.println("a--   = " +  (a--) );
+         System.out.println("d++   = " +  (d++) );
+         System.out.println("++d   = " +  (++d) );
+      }
+    }
 
-### Header 3
+以上实例编译运行结果如下：
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+    a + b = 30
+    a - b = -10
+    a * b = 200
+    b / a = 2
+    b % a = 0
+    c % a = 5
+    a++   = 10
+    a--   = 11
+    d++   = 25
+    ++d   = 27
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+### 关系运算符
+*表格中实例整数变量A的值为10，变量B的值为20*
 
-#### Header 4
+| 运算符 | 描述                                                           | 例子           |
+| ------ | ---------------------------------------------------------------- | ---------------- |
+| ==     | 检查如果两个操作数的值是否相等，如果相等则条件为真。 | （A == B）为假。 |
+| !=     | 检查如果两个操作数的值是否相等，如果值不相等则条件为真。 | （A != B) 为真。 |
+| >      | 检查左操作数的值是否大于右操作数的值，如果是那么条件为真。 | （A> B）为假。 |
+| <      | 检查左操作数的值是否小于右操作数的值，如果是那么条件为真。 | （A <B）为真。 |
+| >=     | 检查左操作数的值是否大于或等于右操作数的值，如果是那么条件为真。 | （A> = B）为假。 |
+| <=     | 检查左操作数的值是否小于或等于右操作数的值，如果是那么条件为真。 | （A <= B）为真。 |
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+### 位运算符
+Java定义了位运算符，应用于整数类型(int)，长整型(long)，短整型(short)，字符型(char)，和字节型(byte)等类型。位运算符作用在所有的位上，并且按位运算。
+*假设a = 60（0011 1100），b = 13（0000 1101）*
 
-##### Header 5
+| 操作符 | 描述                                                                             | 例子                        |
+| ------ | ---------------------------------------------------------------------------------- | ----------------------------- |
+| ＆    | 如果相对应位都是1，则结果为1，否则为0。                          | （A & B）得到12，即0000 1100 |
+| &#124;      | 如果相对应位都是 0，则结果为 0，否则为 1。                       | （A &#124; B）得到61，即 0011 1101 |
+| ^      | 如果相对应位值相同，则结果为0，否则为1。                        | （A ^ B）得到49，即 0011 0001 |
+| 〜    | 按位取反运算符翻转操作数的每一位，即0变成1，1变成0。       | （〜A）得到-61，即1100 0011 |
+| <<     | 按位左移运算符。左操作数按位左移右操作数指定的位数。     | A << 2得到240，即 1111 0000 |
+| >>     | 按位右移运算符。左操作数按位右移右操作数指定的位数。     | A >> 2得到15，即 1111     |
+| >>>    | 按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。 | A>>>2得到15，即0000 1111  |
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+### 逻辑运算符
+下表列出了逻辑运算符的基本运算
+*假设布尔变量A为真，变量B为假*
 
-###### Header 6
+| 操作符    | 描述                                                                                  | 例子                     |
+| ------------ | --------------------------------------------------------------------------------------- | -------------------------- |
+| &&           | 称为逻辑与运算符。当且仅当两个操作数都为真，条件才为真。    | （A && B）为假。      |
+| &#124;&#124; | 称为逻辑或操作符。如果任何两个操作数任何一个为真，条件为真。 | （A &#124;&#124; B）为真。 |
+| ！          | 称为逻辑非运算符。用来反转操作数的逻辑状态。如果条件为true，则逻辑非运算符将得到false。 | ！（A && B）为真。   |
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
+### 赋值运算符
+下面是Java语言支持的赋值运算符：
 
-### There's a horizontal rule below this.
+| 操作符 | 描述                                                       | 例子                                   |
+| -------- | ------------------------------------------------------------ | ---------------------------------------- |
+| =        | 简单的赋值运算符，将右操作数的值赋给左侧操作数 | C = A + B将把A + B得到的值赋给C  |
+| + =      | 加和赋值操作符，它把左操作数和右操作数相加赋值给左操作数 | C + = A等价于C = C + A                |
+| - =      | 减和赋值操作符，它把左操作数和右操作数相减赋值给左操作数 | C - = A等价于C = C - A                |
+| * =      | 乘和赋值操作符，它把左操作数和右操作数相乘赋值给左操作数 | C * = A等价于C = C * A                |
+| / =      | 除和赋值操作符，它把左操作数和右操作数相除赋值给左操作数 | C / = A，C 与 A 同类型时等价于 C = C / A |
+| (％)=   | 取模和赋值操作符，它把左操作数和右操作数取模后赋值给左操作数 | C％= A等价于C = C％A                |
+| << =     | 左移位赋值运算符                                     | C << = 2等价于C = C << 2              |
+| >> =     | 右移位赋值运算符                                     | C >> = 2等价于C = C >> 2              |
+| ＆=     | 按位与赋值运算符                                     | C＆= 2等价于C = C＆2                |
+| ^ =      | 按位异或赋值操作符                                  | C ^ = 2等价于C = C ^ 2                |
+| &#124; = | 按位或赋值操作符                                     | C &#124; = 2等价于C = C &#124; 2      |
 
-* * *
+---
 
-### Here is an unordered list:
+## Java 循环结构 - for, while 及 do...while
+Java中有四种主要的循环结构：
+- while 循环
+- do…while 循环
+- for 循环
 
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+### while循环
+while是最基本的循环，它的结构为：
 
-### And an ordered list:
+    while( 布尔表达式 ) {
+      //循环内容
+    }
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+只要布尔表达式为 true，循环就会一直执行下去。
 
-### And a nested list:
+    public class Test {
+       public static void main(String[] args) {
+          int x = 10;
+          while( x < 20 ) {
+             System.out.print("value of x : " + x );
+             x++;
+             System.out.print("\n");
+          }
+       }
+    }
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+以上代码编译结果为：
 
-### Small image
+    value of x : 10
+    value of x : 11
+    value of x : 12
+    value of x : 13
+    value of x : 14
+    value of x : 15
+    value of x : 16
+    value of x : 17
+    value of x : 18
+    value of x : 19
 
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+### do…while 循环
+对于 while 语句而言，如果不满足条件，则不能进入循环。但有时候我们需要即使不满足条件，也至少执行一次。
 
-### Large image
+do…while 循环和 while 循环相似，不同的是，do…while 循环至少会执行一次。
 
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+    do {
+           //代码语句
+    }while(布尔表达式);
 
+*布尔表达式在循环体的后面，所以语句块在检测布尔表达式之前已经执行了。 如果布尔表达式的值为 true，则语句块一直执行，直到布尔表达式的值为 false。*
 
-### Definition lists can be used with HTML syntax.
+    public class Test {
+       public static void main(String[] args){
+          int x = 10;
+     
+          do{
+             System.out.print("value of x : " + x );
+             x++;
+             System.out.print("\n");
+          }while( x < 20 );
+       }
+    }
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+以上实例编译运行结果如下：
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+    value of x : 10
+    value of x : 11
+    value of x : 12
+    value of x : 13
+    value of x : 14
+    value of x : 15
+    value of x : 16
+    value of x : 17
+    value of x : 18
+    value of x : 19
 
-```
-The final element.
-```
+### for循环
+虽然所有循环结构都可以用 while 或者 do...while表示，但 Java 提供了另一种语句 —— for 循环，使一些循环结构变得更加简单。
+
+for循环执行的次数是在执行前就确定的。语法格式如下：
+
+    for(初始化; 布尔表达式; 更新) {
+        //代码语句
+    }
+
+*关于 for 循环有以下几点说明：*
+
+- *最先执行初始化步骤。可以声明一种类型，但可初始化一个或多个循环控制变量，也可以是空语句。*
+- *然后，检测布尔表达式的值。如果为 true，循环体被执行。如果为false，循环终止，开始执行循环体后面的语句。*
+- *执行一次循环后，更新循环控制变量。*
+- *再次检测布尔表达式。循环执行上面的过程。*
+
+### break 关键字
+break 主要用在循环语句或者 switch 语句中，用来跳出整个语句块。
+
+break 跳出最里层的循环，并且继续执行该循环下面的语句。
+
+*实例*
+
+    public class Test {
+       public static void main(String[] args) {
+          int [] numbers = {10, 20, 30, 40, 50};
+     
+          for(int x : numbers ) {
+             // x 等于 30 时跳出循环
+             if( x == 30 ) {
+                break;
+             }
+             System.out.print( x );
+             System.out.print("\n");
+          }
+       }
+    }
+
+以上实例编译运行结果如下：
+
+    10
+    20
+
+### continue 关键字
+continue 适用于任何循环控制结构中。作用是让程序立刻跳转到下一次循环的迭代。
+
+在 for 循环中，continue 语句使程序立即跳转到更新语句。
+
+在 while 或者 do…while 循环中，程序立即跳转到布尔表达式的判断语句。
+
+*实例*
+
+    public class Test {
+       public static void main(String[] args) {
+          int [] numbers = {10, 20, 30, 40, 50};
+     
+          for(int x : numbers ) {
+             if( x == 30 ) {
+            continue;
+             }
+             System.out.print( x );
+             System.out.print("\n");
+          }
+       }
+    }
+
+以上实例编译运行结果如下：
+
+    10
+    20
+    40
+    50
+
+---
+
+## 方法
+### 什么是方法？
+Java方法是语句的集合，它们在一起执行一个功能。
+
+方法是解决一类问题的步骤的有序组合
+方法包含于类或对象中
+方法在程序中被创建，在其他地方被引用
+
+### 方法的优点
+
+1. 使程序变得更简短而清晰。
+2. 有利于程序维护。
+3. 可以提高程序开发的效率。
+4. 提高了代码的重用性。
+
+### 方法的命名规则
+1. 方法的名字的第一个单词应以小写字母作为开头，后面的单词则用大写字母开头写，不使用连接符。
+2. 下划线可能出现在 JUnit 测试方法名称中用以分隔名称的逻辑组件。
+
+### 方法的定义
+一般情况下，定义一个方法包含以下语法：
+
+    修饰符 返回值类型 方法名(参数类型 参数名){
+        ...
+        方法体
+        ...
+        return 返回值;
+    }
+
+方法包含一个方法头和一个方法体。下面是一个方法的所有部分：
+
+- 修饰符：修饰符，这是可选的，告诉编译器如何调用该方法。定义了该方法的访问类型。
+- 返回值类型 ：方法可能会返回值。returnValueType 是方法返回值的数据类型。有些方法执行所需的操作，但没有返回值。在这种情况下，returnValueType 是关键字void。
+- 方法名：是方法的实际名称。方法名和参数表共同构成方法签名。
+- 参数类型：参数像是一个占位符。当方法被调用时，传递值给参数。这个值被称为实参或变量。参数列表是指方法的参数类型、顺序和参数的个数。参数是可选的，方法可以不包含任何参数。
+- 方法体：方法体包含具体的语句，定义该方法的功能。
+
+### 方法调用
+Java 支持两种调用方法的方式，根据方法是否返回值来选择。
+
+当程序调用一个方法时，程序的控制权交给了被调用的方法。当被调用方法的返回语句执行或者到达方法体闭括号时候交还控制权给程序。
+
+当方法返回一个值的时候，方法调用通常被当做一个值。例如：
+
+    int larger = max(30, 40);
+
+如果方法返回值是void，方法调用一定是一条语句。例如，方法println返回void。下面的调用是个语句：
+
+    System.out.println("欢迎访问菜鸟教程！");
+
+## 类
+一个类可以包含以下类型变量：
+
+- 局部变量：在方法、构造方法或者语句块中定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。
+- 成员变量：成员变量是定义在类中，方法体之外的变量。这种变量在创建对象的时候实例化。成员变量可以被类中方法、构造方法和特定类的语句块访问。
+- 类变量：类变量也声明在类中，方法体之外，但必须声明为 static 类型。
+
+*一个类可以拥有多个方法*
+
+---
+
+## 数组
+
+---
+
+## 分支结构
+
+---
